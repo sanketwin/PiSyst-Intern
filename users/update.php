@@ -6,7 +6,6 @@ include_once("config.php");
 if(isset($_POST['update']))
 {
 	$id = $_POST['id'];
-
 	$name=$_POST['name'];
 	$password=$_POST['password'];
 	$email=$_POST['email'];
@@ -15,8 +14,13 @@ if(isset($_POST['update']))
 	// update user data
 	$result = mysqli_query($mysqli, "UPDATE phpuser SET name='$name',email='$email',address='$address', password='$password' WHERE id=$id");
 
-	// Redirect to homepage to display updated user in list
-	header("Location: index.php");
+	if ($result) {
+		$_SESSION['status'] = "User updated successfully";
+		$_SESSION['status_code'] = "success";
+		// Redirect to homepage to display updated user in list
+		header("Location: index.php");
+	}
+	
 }
 ?>
 <?php
@@ -39,6 +43,11 @@ while($user_data = mysqli_fetch_array($result))
 <head>
 	<title>Update User Data</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		swal("Good job!", "You clicked the button!", "success");
+	</script>
 	<style type="text/css" media="screen">
 		.center {
 		  margin-left: auto;
@@ -48,30 +57,30 @@ while($user_data = mysqli_fetch_array($result))
 </head>
 
 <body>
-	<a href="index.php" class="btn btn-primary m-3">Home</a>
+	<a href="index.php" class="m-3 btn btn-primary">Home</a>
 	<br/><br/>
-	<div class="card shadow text-center m-5">
+	<div class="m-5 text-center shadow card">
 		<div class="card-header">
 			    Update User Information
 		</div>
-		<div class="card-body p-5">
+		<div class="p-5 card-body">
 			<form name="update_user" method="post" action="update.php">
 				<table border="0" class="center">
 					<tr>
 						<td>Name</td>
-						<td><input type="text" name="name" class="form-control m-1" value=<?php echo $name;?>></td>
+						<td><input type="text" name="name" class="m-1 form-control" value="<?php echo $name;?>"></td>
 					</tr>
 					<tr>
 						<td>Email</td>
-						<td><input type="text" name="email" class="form-control m-1" value=<?php echo $email;?>></td>
+						<td><input type="text" name="email" class="m-1 form-control" value=<?php echo $email;?>></td>
 					</tr>
 					<tr>
 						<td>Address</td>
-						<td><input type="text" name="address" class="form-control m-1" value="<?php echo $address;?>"></td>
+						<td><input type="text" name="address" class="m-1 form-control" value="<?php echo $address;?>"></td>
 					</tr>
 					<tr>
 						<td>Password</td>
-						<td><input type="text" name="password" class="form-control m-1" value="<?php echo $password;?>"></td>
+						<td><input type="text" name="password" class="m-1 form-control" value="<?php echo $password;?>"></td>
 					</tr>
 					<tr>
 						<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
