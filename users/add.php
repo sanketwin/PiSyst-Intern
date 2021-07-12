@@ -2,6 +2,11 @@
 <head>
 	<title>Add Users</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+	<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<style type="text/css" media="screen">
 		.center {
 		  margin-left: auto;
@@ -44,19 +49,16 @@
 			</form>
 		</div>
 	</div>
-	<script src="jquery-3.6.0.min.js"></script>
-	<script src="sweetalert2.all.min.js"></script>
-	
 	<script>
-		$(`#add`).on('click',function() {
-			Swal.fire({
-				type: 'success',
-				title: 'Done !',
-				text: 'User Added Successfully !'
-			});
-		});
+	$('.btn-success').on('click',function(e){
+	e.preventDefault();
+		Swal.fire({
+			type: 'success',
+			title: 'Done !',
+			text: "User Added Successfully!",
+			})
+		})
 	</script>
-
 	<?php
 
 	// Check If form submitted, insert form data into users table.
