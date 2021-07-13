@@ -43,22 +43,12 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" id="#add" class="btn btn-success" name="Submit" value="Add"></td>
+						<td><input type="submit" class="btn btn-success" name="Submit" value="Add"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
-	<script>
-	$('.btn-success').on('click',function(e){
-	e.preventDefault();
-		Swal.fire({
-			type: 'success',
-			title: 'Done !',
-			text: "User Added Successfully!",
-			})
-		})
-	</script>
 	<?php
 
 	// Check If form submitted, insert form data into users table.
@@ -70,10 +60,15 @@
 
 		// include database connection file
 		include_once("config.php");
-
 		// Insert user data into table
 		$result = mysqli_query($mysqli, "INSERT INTO phpuser(name,email,address,password) VALUES('$name','$email','$address','$password')");
-		
+		echo "<script>
+			Swal.fire({
+				type: 'success',
+				title: 'Done !',
+				text: 'User Added Successfully!',
+				})
+		</script>";
  			// Show message when user added
 			echo "User added successfully. <a href='index.php'>View Users</a>";
 	}

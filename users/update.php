@@ -3,25 +3,7 @@
 include_once("config.php");
 
 // Check if form is submitted for user update, then redirect to homepage after update
-if(isset($_POST['update']))
-{
-	$id = $_POST['id'];
-	$name=$_POST['name'];
-	$password=$_POST['password'];
-	$email=$_POST['email'];
-	$address=$_POST['address'];
 
-	// update user data
-	$result = mysqli_query($mysqli, "UPDATE phpuser SET name='$name',email='$email',address='$address', password='$password' WHERE id=$id");
-
-	if ($result) {
-		$_SESSION['status'] = "User updated successfully";
-		$_SESSION['status_code'] = "success";
-		// Redirect to homepage to display updated user in list
-		header("Location: index.php");
-	}
-	
-}
 ?>
 <?php
 // Display selected user data based on id
@@ -90,5 +72,18 @@ while($user_data = mysqli_fetch_array($result))
 			</form>
 		</div>
 	</div>
+	<?php
+		if(isset($_POST['update']))
+		{
+			$id = $_POST['id'];
+			$name=$_POST['name'];
+			$password=$_POST['password'];
+			$email=$_POST['email'];
+			$address=$_POST['address'];
+			// update user data
+			$result = mysqli_query($mysqli, "UPDATE phpuser SET name='$name',email='$email',address='$address', password='$password' WHERE id=$id");
+			header("Location:index.php");
+		}
+	?>
 </body>
 </html>
