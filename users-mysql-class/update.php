@@ -87,6 +87,7 @@ foreach ($users as $user) {
                 'email' => $email,
                 'address' => $address,
                 'password' => $password,
+				'updated' =>$db->now(),
             );
             $db->where('id',$id);
             $db->update('users',$data);

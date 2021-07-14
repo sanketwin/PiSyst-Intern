@@ -63,7 +63,8 @@
 				"name" => $name,
 				"email" => $email,	
 				"address" => $address,	
-				"password" => $password,	
+				"password" => $password,
+				"created" =>$db->now(),	
 			);
 			$db -> insert('users',$data);
 			echo "<script>
