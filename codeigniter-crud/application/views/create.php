@@ -49,6 +49,6 @@
                 </div>
             </div>
         </form>
-    </div>npm install --global prettier @prettier/plugin-php
+    </div>
 </body>
 </html>

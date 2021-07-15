@@ -1,6 +1,14 @@
 <?php
     class Users extends CI_Controller{
 
+        public function index(){
+            $this->load->model('User_model');
+            $users = $this->User_model->all();
+            $data = array();
+            $data['users'] = $users;
+            $this->load->view('list',$data);
+        }
+
         public function create(){
             $this->load->model('User_model');
             $this->form_validation->set_rules('name','Name','required');

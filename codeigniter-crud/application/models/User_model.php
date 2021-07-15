@@ -5,6 +5,10 @@
             
             $this->db->insert('ci',$formArray);
         }
+
+        public function all(){
+            return $users = $this->db->get('ci')->result_array();   // SELECT * FROM ci;
+        }
         
     }
 ?>
