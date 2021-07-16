@@ -2,24 +2,67 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
+	public function index(){
+		$this->load->model('User_model');
+		$users = $this->User_model->all();
+		$data = array();
+		$data['users'] = $users;
+		$this->load->view('list',$data);
+	}
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
-		$this->load->view('welcome_message');
+	public function create(){
+		$this->load->model('User_model');
+		$this->form_validation->set_rules('name','Name','required');
+		$this->form_validation->set_rules('email','Email','required|valid_email');
+		$this->form_validation->set_rules('address','Address','required');
+		$this->form_validation->set_rules('password','Password','required');
+		
+		if($this->form_validation->run() == FALSE){
+
+			$this->load->view('create');
+		}else{
+			// Save user record in database
+			$formArray = array();
+			$formArray['name'] = $this->input->post('name');
+			$formArray['email'] = $this->input->post('email');
+			$formArray['address'] = $this->input->post('address');
+			$formArray['password'] = $this->input->post('password');
+			$formArray['created'] = date('Y-m-d');
+
+			$this->User_model->create($formArray);
+			$this->session->set_flashdata('success','Record added successfully.!!');
+			redirect(base_url().'welcome/index');
+		}
+	}
+
+	public function  edit($id){
+		$this->load->model('User_model');
+		$user = $this->User_model->getUser($id);
+		$data = array();
+		$data['user'] = $user;
+
+		$this->form_validation->set_rules('name','Name','required');
+		$this->form_validation->set_rules('email','Email','required|valid_email');
+		$this->form_validation->set_rules('address','Address','required');
+		$this->form_validation->set_rules('password','Password','required');
+
+		if($this->form_validation->run() == FALSE){
+
+			$this->load->view('edit',$data);
+		}else{
+			//Update user record
+			$formArray = array();
+			$formArray['name'] = $this->input->post('name');
+			$formArray['email'] = $this->input->post('email');
+			$formArray['address'] = $this->input->post('address');
+			$formArray['password'] = $this->input->post('password');
+			$formArray['updated'] = date('Y-m-d');
+			$this->User_model->updateUser($id,$formArray);
+			$this->session->set_flashdata('success','Record updated Successfully.!');
+			redirect(base_url().'welcome/index');
+		}
+
+
+
 	}
 }

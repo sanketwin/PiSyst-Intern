@@ -4,7 +4,7 @@
     $db = new MysqliDb (Array (
                     'host' => 'localhost',
                     'username' => 'root', 
-                    'password' => '',
+                    'password' => 'root',
                     'db'=> 'sanket',
     ));
 ?>    

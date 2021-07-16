@@ -16,7 +16,7 @@
     </div>
     <div class="containter m-5">
         <h3>Create User</h3>
-        <form name="createUser" method="POST" action="<?php echo base_url().'index.php/Users/create'; ?>">
+        <form name="createUser" method="POST" action="<?php echo base_url().'welcome/create'; ?>">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary">Add User</button>
-                        <a href="#" class="btn btn-secondary">Cancel</a>
+                        <a href="<?php echo base_url().'welcome/index';?>" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
             </div>
