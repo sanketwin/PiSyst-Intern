@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <title>Add User</title>
+    <title>Dashboard</title>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
@@ -54,7 +54,7 @@
                             <td><?php echo $user['email']?></td>
                             <td><?php echo $user['address']?></td>
                             <td width="70">
-                                <a href="<?php echo base_url().'welcome/edit/'.$user['id']?>" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="<?php echo base_url().'welcome/edit/'.$user['id']?>" class="btn btn-primary btn-sm">Update</a>
                             </td>
                             <td width="100">
                                 <a href="" class="btn btn-danger btn-sm">Delete</a>
