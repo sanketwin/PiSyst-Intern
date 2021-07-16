@@ -22,8 +22,7 @@
             <a href="#" class="navbar-brand">CODE IGNITER 3</a>
         </div>
     </div>
-    <div class="containter m-5">
-        
+    <div class="m-5 containter">
         <div class="container">
             <div class="col-md-12">
                 <div class="row">
@@ -34,8 +33,8 @@
                         <a href="<?php echo base_url().'welcome/create';?>" class="btn btn-success" style="float:right;">Create User</a>
                     </div>
                 </div>
-            <div class="card shadow mt-2">
-            <div class="card-content p-3">
+            <div class="mt-2 shadow card">
+            <div class="p-3 card-content">
                 <table id="dashboard" class="table table-striped">
                         <thead>
                             <tr>
@@ -57,7 +56,7 @@
                                 <a href="<?php echo base_url().'welcome/edit/'.$user['id']?>" class="btn btn-primary btn-sm">Update</a>
                             </td>
                             <td width="100">
-                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="<?php echo base_url().'welcome/delete/'.$user['id']?>" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     <?php } } else { ?>

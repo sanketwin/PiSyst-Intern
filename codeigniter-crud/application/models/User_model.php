@@ -19,6 +19,11 @@
             $this->db->where('id',$id);
             $this->db->update('ci',$formArray);     
         }
+
+        public function deleteUser($id){
+            $this->db->where('id',$id);
+            $this->db->delete('ci');
+        }
         
     }
 ?>

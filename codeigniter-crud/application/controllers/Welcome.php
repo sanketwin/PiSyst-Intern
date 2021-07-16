@@ -65,4 +65,17 @@ class Welcome extends CI_Controller {
 
 
 	}
+
+	public function delete($id){
+
+		$this->load->model('User_model');
+		$user = $this->User_model->getUser($id);
+		if(empty($user)){
+			$this->session->set_flashdata('failure','Record Not Found.!');
+			redirect(base_url().'welcome/index');
+		}
+		$this->User_model->deleteUser($id);
+		$this->session->set_flashdata('success','Record deleted Successfully.!!');
+		redirect(base_url().'welcome/index');
+	}
 }
